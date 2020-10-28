@@ -1,9 +1,8 @@
-const Sequelize = require("sequelize");
+const {Sequelize} = require("sequelize");
 
-const sequelize = new Sequelize("microservice", "postgres", "root", {
+
+module.exports = new Sequelize("micro", "postgres", "root", {
     dialect: "postgres",
-    host: "localhost",
+    host: "postgres",
     port: 5432
 });
-
-module.exports = sequelize
