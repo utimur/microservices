@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  auth:
+    build: ./authService
+    volumes:
+      - ./authService/:/server
+    ports:
+      - 5000:5000
+    environment:
+      - PORT=5000
+    depends_on:
+      - redis
+      - postgres
+    working_dir: /server
+
+  client:
+    container_name: client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    volumes:
+      - './client:/app'
+      - '/app/node_modules'
+    ports:
+      - 3000:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+
+  redis:
+    image: redis
+    ports:
+    - 6369:6379
+
+  postgres:
+    image: postgres
+    container_name: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=root
