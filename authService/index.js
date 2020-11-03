@@ -3,20 +3,21 @@ const authRouter = require('./authRoutes')
 const cors = require('cors')
 const morgan = require('morgan')
 const sequalize = require('./db')
-
+const requestIp = require('request-ip');
 const PORT = process.env.PORT || 8080
 
 const app = express()
 
 app.use(cors())
 app.use(morgan('combined'))
+app.use(requestIp.mw())
 app.use(express.json())
 app.use('/api', authRouter)
 
 const start = async () => {
     try {
         await sequalize.authenticate();
-        await sequalize.sync({ alter: true });
+        await sequalize.sync({force:true});
         app.listen(PORT, () => console.log('server started on port', PORT))
         console.log('Connection has been established successfully.');
     } catch (error) {
