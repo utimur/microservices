@@ -1,0 +1,33 @@
+.page {
+  width: 100%;
+  min-height: 100vh;
+}
+
+
+.page-enter-active {
+  animation: fade-in 500ms forwards;
+  position: fixed;
+}
+
+.page-exit-active {
+  animation: fade-out 500ms forwards;
+  position: fixed;
+}
+
+@keyframes fade-in {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

@@ -1,36 +1,22 @@
 import React from 'react';
-import {Button, Container, AppBar, Tabs, Tab} from "@material-ui/core";
-import {privateRoutes, publicRoutes} from "./navigation";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
-import user from "./store/user";
+import {BrowserRouter} from "react-router-dom";
+import Navbar from "./components/Navbar";
+import './styles/animations.scss'
+import AppRouter from "./components/AppRouter";
+import Loader from "./components/basic/Loader";
+import {observer} from "mobx-react-lite";
+import Snackbar from "./components/basic/Snackbar";
+import app from "./store/app";
 
-function App() {
+const App = observer(() => {
     return (
         <BrowserRouter>
-            <AppBar position="static">
-                <Tabs aria-label="simple tabs example">
-                    <Tab label="Регистрация"  />
-                    <Tab label="Логин"  />
-                </Tabs>
-            </AppBar>
-            <Container>
-                {user.isAuth
-                    ?
-                    <Switch>
-                        {privateRoutes.map(({path, component}) =>
-                            <Route component={component} path={path}/>
-                        )}
-                    </Switch>
-                    :
-                    <Switch>
-                        {publicRoutes.map(({path, component}) =>
-                            <Route component={component} path={path}/>
-                        )}
-                    </Switch>
-                }
-            </Container>
+            {app.loader && <Loader/>}
+            {app.alert && <Snackbar/>}
+            <AppRouter/>
+            <Navbar/>
         </BrowserRouter>
     );
-}
+})
 
 export default App;
