@@ -5,4 +5,10 @@ const alertTypes: any = {
     SUCCESS: 'success',
 }
 
-export {alertTypes}
+const routesPath = {
+    LOGIN: '/login',
+    REGISTRATION: '/registration',
+    USERS: '/users'
+}
+
+export {alertTypes, routesPath}

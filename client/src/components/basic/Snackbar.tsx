@@ -5,7 +5,7 @@ import app from "../../store/app";
 const Snackbar = () => {
     return (
         <div className="alert">
-            <Alert severity="error">{app.alertText}</Alert>
+            <Alert severity={app.alertType}>{app.alertText}</Alert>
         </div>
     );
 };

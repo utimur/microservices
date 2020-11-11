@@ -1,17 +1,21 @@
-import Login from "./pages/Login";
-import Registration from "./pages/Registration";
+import Auth from "./pages/Auth";
+import {routesPath} from "./utils/const";
+import Users from "./pages/Users";
 
 export const publicRoutes = [
     {
-        path: '/login',
-        Component: Login
+        path: routesPath.LOGIN,
+        Component: Auth
     },
     {
-        path: '/registration',
-        Component: Registration
+        path: routesPath.REGISTRATION,
+        Component: Auth
     },
 ]
 
 export const privateRoutes = [
-
+    {
+        path: routesPath.USERS,
+        Component: Users
+    }
 ]

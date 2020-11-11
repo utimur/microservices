@@ -5,12 +5,22 @@
 
 
 .page-enter-active {
-  animation: fade-in 500ms forwards;
+  animation: fade-in 500ms forwards linear;
   position: fixed;
 }
 
 .page-exit-active {
-  animation: fade-out 500ms forwards;
+  animation: fade-out 500ms forwards linear;
+  position: fixed;
+}
+
+.page-up-enter-active {
+  animation: fade-up-in 500ms forwards linear;
+  position: fixed;
+}
+
+.page-up-exit-active {
+  animation: fade-up-out 500ms forwards linear;
   position: fixed;
 }
 
@@ -29,5 +39,22 @@
   }
   100% {
     transform: translateX(100%);
+  }
+}
+@keyframes fade-up-in {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-up-out {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
   }
 }
