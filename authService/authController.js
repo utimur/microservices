@@ -8,7 +8,7 @@ class AuthController {
             const user = await authService.createUser(username, password)
             return res.json(user)
         } catch (e) {
-            return res.json({message:e.message})
+            return res.status(400).json({message:e.message})
         }
     }
 
@@ -18,7 +18,7 @@ class AuthController {
             const user = await authService.login(username, password)
             return res.json(user)
         } catch (e) {
-            return res.json({message:e.message})
+            return res.status(400).json({message:e.message})
         }
     }
 
@@ -27,7 +27,7 @@ class AuthController {
             const user = await authService.getUser(req.user.id)
             return res.json(user)
         } catch (e) {
-            return res.json({message:e.message})
+            return res.status(400).json({message:e.message})
         }
     }
 
